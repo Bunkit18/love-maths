@@ -11,12 +11,20 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         })
     }
-
 })
 
-function runGame() {
+/**
+ * The main fame "loop, called when the script is first laoded
+ * and after the user's answer has been processed.
+ * This is a doc string and it shows the description written here when hovered over the function
+ */
 
+function runGame() {
+    let num1 = Math.floor(Math.random() * 25) + 1;
+    let num2 = Math.floor(Math.random() * 25) + 1;
 }
+
+runGame();
 
 function checkAnswer() {
     
