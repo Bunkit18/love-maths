@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function() {
     for (let button of buttons){
         button.addEventListener("click", function() {
             if (this.getAttribute("data-type") === "submit") {
-                alert("You clicked submit!");
+                checkAnswer();
             } else {
                 let gameType = this.getAttribute("data-type");
                 runGame(gameType);
@@ -39,8 +39,22 @@ function checkAnswer() {
     
 }
 
+/**
+ * Gets the operands (numbers) and the operator (plus, minuss etc)
+ * directly from the DOM, and returns the correct answer;
+ */
+
 function calculateCorrectAnswer() {
-    
+    let operand1 = parseInt(document.getElementById("operand1").innerText);
+    let operand2 = parseInt(document.getElementById("operand2").innerText);
+    let operator = document.getElementById("operator").innerText;
+
+    if (operator === "+") {
+        return [operand1 + operand2, "addition"];
+    } else {
+        alert(`Unimplemented operator ${operator}`);
+        throw `Unimplemented operator ${operator}. Aborting!`;
+    }
 }
 
 function incrementScore() {
@@ -57,14 +71,20 @@ function displayAdditionQuestion(operand1, operand2) {
     document.getElementById("operator").textContent = "+";
 }
 
-function displaySubtractQuestion() {
-    
+function displaySubtractQuestion(operand1, operand2) {
+    document.getElementById("operand1").textContent = operand1;
+    document.getElementById("operand2").textContent = operand2;
+    document.getElementById("operator").textContent = "-";
 }
 
-function displayMultiplyQuestion() {
-    
+function displayMultiplyQuestion(operand1, operand2) {
+    document.getElementById("operand1").textContent = operand1;
+    document.getElementById("operand2").textContent = operand2;
+    document.getElementById("operator").textContent = "x";
 }
 
-// function displayDivideQuestion() {
-    
+// function displayDivideQuestion(operand1, operand2) {
+    document.getElementById("operand1").textContent = operand1;
+    document.getElementById("operand2").textContent = operand2;
+    document.getElementById("operator").textContent = "/";    
 // }
