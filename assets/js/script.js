@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function() { //creates a local function to execute at that moment
     let buttons = document.getElementsByTagName("button");
 
     for (let button of buttons){
@@ -37,7 +37,7 @@ function runGame(gameType) {
     let num2 = Math.floor(Math.random() * 25) + 1;
 
     if (gameType === "addition") {
-        displayAdditionQuestion(num1. num2);
+        displayAdditionQuestion(num1, num2);
     } else if (gameType === "multiply") {
         displayMultiplyQuestion(num1, num2);
     } else if (gameType === "subtract") {
@@ -68,7 +68,7 @@ function checkAnswer() {
         incrementWrongAnswer();
     }
 
-    runGame(calculateCorrectAnswer[1]);
+    runGame(calculatedAnswer[1]);
 
 }
 
@@ -86,6 +86,8 @@ function calculateCorrectAnswer() {
         return [operand1 + operand2, "addition"];
     } else if (operator === "x") {
         return [operand1 * operand2, "multiply"];
+    } else if (operator === "-") {
+        return [operand1 - operand2, "subtract"];
     } else {
         alert(`Unimplemented operator ${operator}`);
         throw `Unimplemented operator ${operator}. Aborting!`;
@@ -98,7 +100,7 @@ function calculateCorrectAnswer() {
 
 function incrementScore() {
     
-    let oldScore = parseInt(document.getElementById("score"),innerText);
+    let oldScore = parseInt(document.getElementById("score").innerText);
     document.getElementById("score").innerText = ++oldScore;
 
 }
@@ -108,8 +110,8 @@ function incrementScore() {
  */
 
 function incrementWrongAnswer() {
-    let oldScore = parseInt(document.getElementById("incorrect"),innerText);
-    document.getElementById("inccorrect").innerText = ++oldScore;
+    let oldScore = parseInt(document.getElementById("incorrect").innerText);
+    document.getElementById("incorrect").innerText = ++oldScore;
 }
 
 function displayAdditionQuestion(operand1, operand2) {
