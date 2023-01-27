@@ -58,7 +58,7 @@ function runGame(gameType) {
 
 function checkAnswer() {
     
-    let userAnswer = parseInt(document.getElementById("answer-box").value);
+    let userAnswer = parseFloat(document.getElementById("answer-box").value);
     let calculatedAnswer = calculateCorrectAnswer();
     let isCorrect = userAnswer === calculatedAnswer[0];
 
@@ -80,8 +80,13 @@ function checkAnswer() {
  */
 
 function calculateCorrectAnswer() {
-    let operand1 = parseInt(document.getElementById("operand1").innerText);
-    let operand2 = parseInt(document.getElementById("operand2").innerText);
+    // if (gameType === "division") {
+    //     let operand1 = parseFloat(document.getElementById("operand1").innerText);
+    //     let operand2 = parseFloat(document.getElementById("operand2").innerText);
+    // } else {}
+        let operand1 = parseInt(document.getElementById("operand1").innerText);
+        let operand2 = parseInt(document.getElementById("operand2").innerText);
+    // }
     let operator = document.getElementById("operator").innerText;
 
     if (operator === "+") {
@@ -91,7 +96,8 @@ function calculateCorrectAnswer() {
     } else if (operator === "-") {
         return [operand1 - operand2, "subtract"];
     } else if (operator === "/") {
-        return [operand1 / operand2, "division"];
+        let divAnswer = operand1 / operand2;
+        return [divAnswer.toFixed(1), "division"];
     } else {
         alert(`Unimplemented operator ${operator}`);
         throw `Unimplemented operator ${operator}. Aborting!`;
@@ -137,7 +143,7 @@ function displayMultiplyQuestion(operand1, operand2) {
 }
 
 function displayDivideQuestion(operand1, operand2) {
-    document.getElementById("operand1").textContent = operand1;
-    document.getElementById("operand2").textContent = operand2;
+    document.getElementById("operand1").textContent = operand1 > operand2 ? operand1 : operand2;
+    document.getElementById("operand2").textContent = operand1 > operand2 ? operand2 : operand1;
     document.getElementById("operator").textContent = "/";    
 }
